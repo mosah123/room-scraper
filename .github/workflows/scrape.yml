@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false  # We will re-authenticate later
 
       - name: Set up Python 3.9
         uses: actions/setup-python@v4
@@ -26,13 +28,13 @@ jobs:
         run: |
           python alltogethor.py  # Replace with your script name
 
-      # New steps to commit and push the updated files
+      # Commit and push changes
       - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add urbium.json urbium.csv  # Add your JSON and CSV file names here
           git commit -m "Update data files [skip ci]" || echo "No changes to commit"
-          git push
+          git push origin HEAD:main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
