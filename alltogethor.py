@@ -1,3 +1,7 @@
+import nest_asyncio
+nest_asyncio.apply()  # Apply the patch for nested event loops
+
+# Your existing imports
 import requests
 from bs4 import BeautifulSoup
 import json
@@ -10,6 +14,7 @@ import time
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime
 import pandas as pd
+
 
 # Base URL for the city pages
 base_url = "https://wearehomesforstudents.com/student-accommodation/"
