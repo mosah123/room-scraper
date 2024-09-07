@@ -1,9 +1,12 @@
 name: Daily Scraper
 
 on:
+  # Allows you to manually trigger the workflow from the Actions tab
+  workflow_dispatch:
+
   # Schedule the scraper to run at 1 PM UTC every day
   schedule:
-    - cron: '0 13 * * *'  # Runs at 1 PM UTC every day
+    - cron: '0 13 * * *'
 
 jobs:
   scrape_job:
@@ -20,12 +23,13 @@ jobs:
         with:
           python-version: '3.9'
 
-      # Step 3: Install dependencies from requirements.txt (if you have one)
+      # Step 3: Install dependencies from requirements.txt
       - name: Install dependencies
         run: |
-          pip install -r requirements.txt  # If you have this file with dependencies
+          pip install -r requirements.txt
 
       # Step 4: Run the scraping script
       - name: Run the scraper
         run: |
-          python alltogethor.py  # Replace with your actual script name
+          python alltogethor.py  # Replace with the name of your Python script
+
