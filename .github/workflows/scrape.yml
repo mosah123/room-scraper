@@ -1,0 +1,31 @@
+name: Daily Scraper
+
+on:
+  # Schedule the scraper to run at 1 PM UTC every day
+  schedule:
+    - cron: '0 13 * * *'  # Runs at 1 PM UTC every day
+
+jobs:
+  scrape_job:
+    runs-on: ubuntu-latest  # Runs on the latest Ubuntu environment
+
+    steps:
+      # Step 1: Checkout the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python 3.9
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # Step 3: Install dependencies from requirements.txt (if you have one)
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # If you have this file with dependencies
+
+      # Step 4: Run the scraping script
+      - name: Run the scraper
+        run: |
+          python alltogethor.py  # Replace with your actual script name
